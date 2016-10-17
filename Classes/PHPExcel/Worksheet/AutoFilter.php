@@ -105,6 +105,8 @@ class PHPExcel_Worksheet_AutoFilter
      */
     public function setRange($pRange = '')
     {
+        // fix issue with new version of Excel with $ in ranges
+        $pRange = str_replace('$', '', $pRange);
         // Uppercase coordinate
         $cellAddress = explode('!', strtoupper($pRange));
         if (count($cellAddress) > 1) {
